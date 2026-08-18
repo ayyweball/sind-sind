@@ -1,0 +1,12 @@
+export const expertise = [
+  { slug: 'e-commerce-growth', number: '01', title: 'E-commerce growth', summary: 'Find the constraint between attention, conversion and contribution margin.', questions: ['Should we scale paid acquisition?', 'Where is the conversion funnel leaking?', 'Which channels are worth another quarter of investment?'], focus: 'Growth is useful only when it compounds profitable demand. Start with the economics of an order, then decide where more traffic can create real value.' },
+  { slug: 'new-market-entry', number: '02', title: 'Breaking into a new domain', summary: 'Assess a new category, geography or channel before committing capital.', questions: ['Which assumptions need testing first?', 'What is the smallest credible market-entry pilot?', 'What must be true for this expansion to work?'], focus: 'New opportunities should be tested as decisions, not narratives: target customer, offer, unit economics, capability gaps and a defined exit condition.' },
+  { slug: 'pricing-and-margin', number: '03', title: 'Pricing & margin', summary: 'Protect contribution without weakening the offer your customer sees.', questions: ['Where does margin actually disappear?', 'Should we raise prices or redesign the offer?', 'Which SKUs deserve attention first?'], focus: 'Pricing is one lever inside a wider system of product mix, costs, delivery, discounts and perceived value.' },
+  { slug: 'operations-and-retention', number: '04', title: 'Operations & retention', summary: 'Turn delivery, returns and repeat purchase into durable advantage.', questions: ['Which inventory risks matter most?', 'What is driving returns?', 'How can the first order lead to a second?'], focus: 'The customer experience after checkout is part of the commercial model, not merely an operations function.' }
+];
+
+export const insights = [
+  { category: 'Decision note', title: 'Do not optimise ROAS before you know your break-even point.', excerpt: 'A simple contribution model changes the questions you ask of paid acquisition.' },
+  { category: 'Market entry', title: 'A marketplace pilot needs an exit condition as well as a launch plan.', excerpt: 'Define what would make you scale, pause or stop before inventory is committed.' },
+  { category: 'Operations', title: 'Returns are product feedback with a cost attached.', excerpt: 'A useful return-reason taxonomy exposes the failures worth fixing first.' }
+];
