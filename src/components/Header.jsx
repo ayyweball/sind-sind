@@ -20,11 +20,11 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-[#ded8cb] bg-[#fcfbf8]/95 backdrop-blur-xs">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-[5vw] py-4 md:py-5">
         {/* Brand / Wordmark */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center">
           <Link
             to="/"
             aria-label="Sind & Sind Home"
-            className="flex items-center gap-3 transition-opacity hover:opacity-85"
+            className="flex items-center transition-opacity hover:opacity-85"
             onClick={() => setMobileMenuOpen(false)}
           >
             <div className="logo-frame w-28 sm:w-36">
@@ -32,10 +32,6 @@ export default function Header() {
             </div>
             <span className="sr-only">Sind & Sind</span>
           </Link>
-          <div className="hidden h-5 w-[1px] bg-[#ded8cb] lg:block" />
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.16em] text-[#6e6a60] lg:inline-block">
-            E-Commerce Advisory
-          </span>
         </div>
 
         {/* Desktop Navigation */}

@@ -1,2 +1,64 @@
+import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal.jsx';
-export default function About() { return <section className="px-[5vw] py-16 md:py-24"><div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-[1.1fr_1fr]"><Reveal><p className="eyebrow">How it works</p><h1 className="display mt-5">Useful guidance should be clear about its limits.</h1><p className="mt-8 max-w-2xl text-xl leading-8 text-[#625d54]">The free consultant is a rules-based decision-support tool. It matches the language of your question to a maintained library of e-commerce playbooks, then returns a focused situation, recommendation and risk.</p></Reveal><Reveal className="border-l border-[#d6d1c3] pl-6 md:pl-12"><ol className="space-y-9">{[['01', 'Describe the decision', 'Share the business problem, rather than only the tactic you are considering.'], ['02', 'Match a playbook', 'The server scores your question against practical e-commerce topics.'], ['03', 'Use your judgement', 'Check the response against your data, customers, contracts and commercial context.']].map(([number, heading, text]) => <li key={number}><p className="mono text-xs text-[#d8321e]">{number}</p><h2 className="mt-2 text-2xl">{heading}</h2><p className="mt-2 leading-7 text-[#625d54]">{text}</p></li>)}</ol></Reveal></div></section>; }
+
+export default function About() {
+  return (
+    <section className="px-[5vw] py-16 md:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-16 lg:grid-cols-[1.15fr_1fr]">
+          <Reveal>
+            <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#c5301a]">
+              The Firm &amp; Methodology
+            </span>
+            <h1 className="display mt-4">
+              Strategic guidance must be clear about its reasoning.
+            </h1>
+            <p className="mt-8 text-lg leading-relaxed text-[#45423b]">
+              Sind &amp; Sind is a specialized e-commerce advisory firm. We help founders, executives, and commercial operators turn high-stakes commercial dilemmas into disciplined, actionable next steps.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-[#45423b]">
+              Unlike black-box generative chatbots that hallucinate plausible-sounding tactics without commercial accountability, our Decision Diagnostic operates on audited, deterministic decision trees. Every recommendation is traceable, verifiable, and rooted in order-level unit economics.
+            </p>
+
+            <div className="mt-10 pt-8 border-t border-[#ded8cb]">
+              <Link to="/consultant" className="button-primary">
+                Run a decision diagnosis <span>→</span>
+              </Link>
+            </div>
+          </Reveal>
+
+          <Reveal className="border-l border-[#ded8cb] pl-6 md:pl-12">
+            <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#c5301a]">
+              Engagement Protocol
+            </span>
+            <ol className="mt-8 space-y-10">
+              {[
+                [
+                  '01',
+                  'Isolate the Economic Problem',
+                  'Frame the trade-off around unit margins, inventory turnover, or channel cannibalisation rather than isolated tactical marketing tweaks.'
+                ],
+                [
+                  '02',
+                  'Evaluate Decision Playbooks',
+                  'The diagnostic scores the problem against an audited repository of commerce playbooks to identify the primary constraint and risk factors.'
+                ],
+                [
+                  '03',
+                  'Apply Contextual Governance',
+                  'We deliver structured situation assessments, strategic recommendations, and operational guardrails to guide leadership execution.'
+                ]
+              ].map(([number, heading, text]) => (
+                <li key={number}>
+                  <p className="font-mono text-xs text-[#c5301a]">{number}</p>
+                  <h2 className="mt-2 font-serif text-2xl text-[#141310]">{heading}</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-[#45423b]">{text}</p>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}

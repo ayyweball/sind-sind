@@ -1,4 +1,61 @@
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal.jsx';
 import { expertise } from '../content.js';
-export default function Expertise() { return <section className="px-[5vw] py-16 md:py-24"><div className="mx-auto max-w-7xl"><Reveal><p className="eyebrow">Expertise</p><h1 className="display mt-5 max-w-4xl">Commercial questions, made more useful.</h1><p className="mt-7 max-w-2xl text-xl leading-8 text-[#625d54]">Explore the areas where e-commerce decisions most often get expensive: growth, market entry, margin and the operating model behind customer experience.</p></Reveal><div className="mt-14 grid gap-5 md:grid-cols-2">{expertise.map(item => <Reveal key={item.slug}><Link to={`/expertise/${item.slug}`} className="group block border border-[#d6d1c3] bg-[#fffdf9] p-7 transition-colors hover:bg-[#efebe1]"><p className="mono text-xs text-[#d8321e]">{item.number}</p><h2 className="mt-12 text-3xl">{item.title}</h2><p className="mt-4 leading-7 text-[#625d54]">{item.summary}</p><span className="mt-10 block text-sm underline underline-offset-4">Explore area ↗</span></Link></Reveal>)}</div></div></section>; }
+
+export default function Expertise() {
+  return (
+    <section className="px-[5vw] py-16 md:py-28">
+      <div className="mx-auto max-w-7xl">
+        <Reveal>
+          <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#c5301a]">
+            Capabilities &amp; Practice Areas
+          </span>
+          <h1 className="display mt-4 max-w-4xl">
+            Commercial questions, resolved through disciplined analysis.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg text-[#45423b]">
+            Explore the specialized areas where e-commerce trade-offs most often become expensive: paid acquisition economics, checkout architecture, SKU margins, inventory velocity, and multi-channel expansion.
+          </p>
+        </Reveal>
+
+        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {expertise.map((item) => (
+            <Reveal key={item.slug} className="h-full">
+              <Link
+                to={`/expertise/${item.slug}`}
+                className="group flex h-full flex-col justify-between border border-[#ded8cb] bg-[#fcfbf8] p-8 transition-all hover:border-[#141310] hover:bg-[#f4f0e6]"
+              >
+                <div>
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#141310]">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-90"
+                    />
+                  </div>
+                  <div className="mt-6 flex items-center justify-between font-mono text-xs text-[#c5301a]">
+                    <span>{item.number}</span>
+                    <span className="text-[11px] uppercase tracking-wider text-[#6e6a60]">
+                      PRACTICE
+                    </span>
+                  </div>
+                  <h2 className="mt-3 font-serif text-2xl text-[#141310] group-hover:text-[#c5301a] transition-colors">
+                    {item.title}
+                  </h2>
+                  <p className="mt-3 text-sm leading-relaxed text-[#45423b]">
+                    {item.summary}
+                  </p>
+                </div>
+                <div className="mt-8 pt-4 border-t border-[#ded8cb]">
+                  <span className="editorial-link">
+                    Explore practice area <span>→</span>
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
