@@ -137,26 +137,24 @@ export function calculateStoreMetrics(data) {
   };
 }
 
-/**
- * Calculates per-product commercial, margin, velocity and inventory metrics.
- */
 export function calculateProductPerformance(data) {
-  const { products = [], orderItems = [], inventory = [], returns = [], adSpend = [] } = data;
+  const { products = [], orderItems = [], inventory = [], returns = [], adSpend = [] } = data || {};
 
-  const totalStoreRevenue = orderItems.reduce((sum, i) => sum + (i.netRevenue || 0), 0);
+  const totalStoreRevenue = orderItems.reduce((sum, i) => sum + (i.netRevenue || (i.price * (i.quantity || 1)) || 0), 0);
 
   return products.map(product => {
-    const items = orderItems.filter(item => item.productId === product.id);
-    const prodReturns = returns.filter(r => r.productId === product.id);
-    const inv = inventory.find(i => i.productId === product.id) || {};
-    const ads = adSpend.filter(a => a.productId === product.id);
+    const items = orderItems.filter(item => item.productId === product.id || item.sku === product.sku);
+    const prodReturns = returns.filter(r => r.productId === product.id || r.sku === product.sku);
+    const inv = inventory.find(i => i.productId === product.id || i.sku === product.sku) || {};
+    const ads = adSpend.filter(a => a.productId === product.id || a.sku === product.sku);
 
-    const totalRevenue = items.reduce((sum, item) => sum + (item.netRevenue || 0), 0);
+    const totalRevenue = items.reduce((sum, item) => sum + (item.netRevenue !== undefined ? item.netRevenue : ((item.realizedPrice || item.price || product.price || 0) * (item.quantity || 1))), 0);
     const totalUnits = items.reduce((sum, item) => sum + (item.quantity || 0), 0);
-    const totalCogs = items.reduce((sum, item) => sum + (item.cogs || 0), 0);
+    const unitCost = product.cost || product.cogs || 0;
+    const totalCogs = items.reduce((sum, item) => sum + (item.cogs !== undefined ? item.cogs : ((item.quantity || 1) * unitCost)), 0);
     const totalDiscounts = items.reduce((sum, item) => sum + (item.discount || 0), 0);
 
-    const avgSellingPrice = totalUnits > 0 ? totalRevenue / totalUnits : product.price;
+    const avgSellingPrice = totalUnits > 0 ? totalRevenue / totalUnits : (product.price || 0);
     const grossProfit = totalRevenue - totalCogs;
     const grossMarginPct = totalRevenue > 0 ? (grossProfit / totalRevenue) * 100 : 0;
 
@@ -175,13 +173,13 @@ export function calculateProductPerformance(data) {
     const contributionVal = grossProfit - totalAdSpend - estimatedOrderOverhead;
     const contributionMarginPct = totalRevenue > 0 ? (contributionVal / totalRevenue) * 100 : 0;
 
-    const currentStock = inv.currentStock || 0;
-    const dailyVelocity = inv.dailyVelocity || 0;
-    const coverageDays = inv.coverageDays || 0;
+    const currentStock = inv.stockUnits !== undefined ? inv.stockUnits : (inv.currentStock || 0);
+    const dailyVelocity = inv.dailyVelocity || (currentStock > 0 ? currentStock / 30 : 0);
+    const coverageDays = inv.coverageDays !== undefined ? inv.coverageDays : (dailyVelocity > 0 ? currentStock / dailyVelocity : 0);
     const leadTimeDays = inv.leadTimeDays || 14;
     const safetyStock = inv.safetyStock || 0;
     const reorderPoint = inv.reorderPoint || 0;
-    const warehouseLocation = inv.warehouseLocation || 'Central';
+    const warehouseLocation = inv.warehouseLocation || inv.warehouseId || 'Central';
 
     const isStockoutRisk = coverageDays < leadTimeDays;
     const isExcessStock = coverageDays > 90;

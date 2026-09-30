@@ -1,25 +1,64 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useData } from '../../context/DataContext.jsx';
+import { useCommerceData } from '../../hooks/useCommerceData.js';
+import DataSourceBar from '../../components/app/DataSourceBar.jsx';
+import EmptyState from '../../components/app/EmptyState.jsx';
 
 export default function DecisionsPage() {
-  const { data, storeName } = useData();
+  const { data, storeName } = useCommerceData();
   const ledger = data.decisionsLedger || [];
+
+  if (ledger.length === 0) {
+    return (
+      <div className="space-y-10">
+        <div className="flex flex-wrap items-end justify-between gap-6 border-b border-[#ded8cb] pb-8">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-[#c5301a]">
+              <span>Intelligence / Decisions</span>
+            </div>
+            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#141310] tracking-tight">
+              Executive Decision Register
+            </h1>
+            <p className="text-sm font-mono text-[#6e6a60]">
+              {storeName} · Audited governance actions, operational trade-offs, and scheduled management reviews.
+            </p>
+            <div className="pt-2">
+              <DataSourceBar />
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <Link to="/app/signals" className="button-secondary text-xs">
+              Review Active Findings →
+            </Link>
+          </div>
+        </div>
+
+        <EmptyState
+          title="No governance decisions recorded"
+          message="The Decision Centre tracks executive interventions, operational trade-offs, and scheduled reviews generated from operating findings."
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-10">
       {/* 1. MODULE HEADER */}
       <div className="flex flex-wrap items-end justify-between gap-6 border-b border-[#ded8cb] pb-8">
-        <div className="space-y-1">
+        <div className="space-y-2">
           <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-[#c5301a]">
             <span>Intelligence / Decisions</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#141310] tracking-tight">
             Executive Decision Register
           </h1>
-          <p className="text-sm font-mono text-[#6e6a60] pt-1">
+          <p className="text-sm font-mono text-[#6e6a60]">
             {storeName} · Audited governance actions, operational trade-offs, and scheduled management reviews.
           </p>
+          <div className="pt-2">
+            <DataSourceBar />
+          </div>
         </div>
 
         <div className="flex items-center gap-4">

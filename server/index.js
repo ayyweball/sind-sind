@@ -3,13 +3,17 @@ import cors from 'cors';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { playbooks } from './data/playbooks.js';
+import marketplaceRoutes from './routes/marketplaceRoutes.js';
+import agentRouter from './agent/agentRouter.js';
 
 const app = express();
 const port = process.env.PORT || 5174;
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173' }));
-app.use(express.json({ limit: '8kb' }));
+app.use(express.json({ limit: '2mb' }));
 
+app.use('/api/marketplaces', marketplaceRoutes);
+app.use('/api/agent', agentRouter);
 app.get('/api/health', (_request, response) => response.json({ status: 'ok' }));
 app.post('/api/advice', (request, response) => {
   const question = typeof request.body?.question === 'string' ? request.body.question.trim() : '';

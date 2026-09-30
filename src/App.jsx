@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { DataProvider } from './context/DataContext.jsx';
+import ErrorBoundary from './components/ErrorBoundary.jsx';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import Home from './pages/Home.jsx';
@@ -26,6 +27,7 @@ import OperationsPage from './pages/app/OperationsPage.jsx';
 import DecisionsPage from './pages/app/DecisionsPage.jsx';
 import DataPage from './pages/app/DataPage.jsx';
 import SettingsPage from './pages/app/SettingsPage.jsx';
+import AgentPage from './pages/app/AgentPage.jsx';
 
 function PublicLayout({ children }) {
   return (
@@ -39,88 +41,90 @@ function PublicLayout({ children }) {
 
 export default function App() {
   return (
-    <DataProvider>
-      <Routes>
-        {/* Platform Console Routes */}
-        <Route path="/app" element={<AppShell />}>
-          <Route index element={<OverviewPage />} />
-          <Route path="products" element={<ProductsPage />} />
-          <Route path="products/:sku" element={<ProductDetailPage />} />
-          <Route path="economics" element={<EconomicsPage />} />
-          <Route path="marketplaces" element={<MarketplacesPage />} />
-          <Route path="marketplaces/:channelId" element={<ChannelDetailPage />} />
-          <Route path="pricing" element={<PricingPage />} />
-          <Route path="pricing/:sku" element={<PricingDetailPage />} />
-          <Route path="cash" element={<WorkingCapitalPage />} />
-          <Route path="cash/:sku" element={<CashDetailPage />} />
-          <Route path="operations/cash" element={<WorkingCapitalPage />} />
-          <Route path="signals" element={<SignalsPage />} />
-          <Route path="signals/:signalId" element={<SignalDetailPage />} />
-          <Route path="operations" element={<OperationsPage />} />
-          <Route path="decisions" element={<DecisionsPage />} />
-          <Route path="data" element={<DataPage />} />
-          <Route path="settings" element={<SettingsPage />} />
-        </Route>
+    <ErrorBoundary>
+      <DataProvider>
+        <Routes>
+          {/* Platform Console Routes */}
+          <Route path="/app" element={<AppShell />}>
+            <Route index element={<OverviewPage />} />
+            <Route path="products" element={<ProductsPage />} />
+            <Route path="products/:sku" element={<ProductDetailPage />} />
+            <Route path="economics" element={<EconomicsPage />} />
+            <Route path="marketplaces" element={<MarketplacesPage />} />
+            <Route path="marketplaces/:channelId" element={<ChannelDetailPage />} />
+            <Route path="pricing" element={<PricingPage />} />
+            <Route path="pricing/:sku" element={<PricingDetailPage />} />
+            <Route path="cash" element={<WorkingCapitalPage />} />
+            <Route path="cash/:sku" element={<CashDetailPage />} />
+            <Route path="operations/cash" element={<WorkingCapitalPage />} />
+            <Route path="signals" element={<SignalsPage />} />
+            <Route path="signals/:signalId" element={<SignalDetailPage />} />
+            <Route path="operations" element={<OperationsPage />} />
+            <Route path="decisions" element={<DecisionsPage />} />
+            <Route path="data" element={<DataPage />} />
+            <Route path="settings" element={<SettingsPage />} />
+            <Route path="agent" element={<AgentPage />} />
+          </Route>
 
-
-        {/* Public Editorial Site Routes */}
-        <Route
-          path="/"
-          element={
-            <PublicLayout>
-              <Home />
-            </PublicLayout>
-          }
-        />
-        <Route
-          path="/expertise"
-          element={
-            <PublicLayout>
-              <Expertise />
-            </PublicLayout>
-          }
-        />
-        <Route
-          path="/expertise/:slug"
-          element={
-            <PublicLayout>
-              <ExpertiseDetail />
-            </PublicLayout>
-          }
-        />
-        <Route
-          path="/insights"
-          element={
-            <PublicLayout>
-              <Insights />
-            </PublicLayout>
-          }
-        />
-        <Route
-          path="/consultant"
-          element={
-            <PublicLayout>
-              <Consultant />
-            </PublicLayout>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <PublicLayout>
-              <About />
-            </PublicLayout>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <PublicLayout>
-              <Home />
-            </PublicLayout>
-          }
-        />
-      </Routes>
-    </DataProvider>
+          {/* Public Editorial Site Routes */}
+          <Route
+            path="/"
+            element={
+              <PublicLayout>
+                <Home />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/expertise"
+            element={
+              <PublicLayout>
+                <Expertise />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/expertise/:slug"
+            element={
+              <PublicLayout>
+                <ExpertiseDetail />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/insights"
+            element={
+              <PublicLayout>
+                <Insights />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/consultant"
+            element={
+              <PublicLayout>
+                <Consultant />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <PublicLayout>
+                <About />
+              </PublicLayout>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <PublicLayout>
+                <Home />
+              </PublicLayout>
+            }
+          />
+        </Routes>
+      </DataProvider>
+    </ErrorBoundary>
   );
 }

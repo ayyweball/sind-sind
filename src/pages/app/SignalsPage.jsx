@@ -1,10 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { useData } from '../../context/DataContext.jsx';
+import { useCommerceData } from '../../hooks/useCommerceData.js';
 import { generateSignals, calculateSignalSummary, PRIORITY_LABELS } from '../../lib/signals.js';
+import DataSourceBar from '../../components/app/DataSourceBar.jsx';
+import EmptyState from '../../components/app/EmptyState.jsx';
 
 export default function SignalsPage() {
-  const { data, storeName } = useData();
+  const { data, storeName } = useCommerceData();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPriority, setSelectedPriority] = useState('ALL');
@@ -66,20 +68,50 @@ export default function SignalsPage() {
     );
   };
 
+  if (signals.length === 0) {
+    return (
+      <div className="space-y-10">
+        <div className="flex flex-wrap items-end justify-between gap-6 border-b border-[#ded8cb] pb-8">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-[#c5301a]">
+              <span>Intelligence / Findings</span>
+            </div>
+            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#141310] tracking-tight">
+              Operating Findings Register
+            </h1>
+            <p className="text-sm font-mono text-[#6e6a60]">
+              {storeName} · What requires management review? Prioritized cross-functional tensions and operational constraints.
+            </p>
+            <div className="pt-2">
+              <DataSourceBar />
+            </div>
+          </div>
+        </div>
+        <EmptyState
+          title="No operating findings identified"
+          message="Deterministic finding engines continuously scan inventory coverage, customer return friction, pricing floor breaches, and supply constraints. No operating exceptions found in active dataset."
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-10">
       {/* 1. MODULE HEADER */}
       <div className="flex flex-wrap items-end justify-between gap-6 border-b border-[#ded8cb] pb-8">
-        <div className="space-y-1">
+        <div className="space-y-2">
           <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-[#c5301a]">
             <span>Intelligence / Findings</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#141310] tracking-tight">
             Operating Findings Register
           </h1>
-          <p className="text-sm font-mono text-[#6e6a60] pt-1">
+          <p className="text-sm font-mono text-[#6e6a60]">
             {storeName} · What requires management review? Prioritized cross-functional tensions and operational constraints.
           </p>
+          <div className="pt-2">
+            <DataSourceBar />
+          </div>
         </div>
 
         <div className="flex items-center gap-4">

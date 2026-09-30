@@ -1,4 +1,3 @@
-// Deterministic Signal & Operating Findings Generation Engine for Sind & Sind
 import { SIGNAL_RULES } from './signalRules.js';
 import { calculateStoreMetrics, calculateProductPerformance } from './metrics.js';
 
@@ -27,10 +26,7 @@ export function generateSignals(data) {
 
   const signals = [];
 
-  // =========================================================================
-  // 1. CROSS-FUNCTIONAL FINDING: Marketing Acquisition × Inventory Constraint
-  // =========================================================================
-  // Trigger: Meta / Google ad spend scaling (> +25%) while promoted SKU runway < supplier lead time
+  
   const heroSKU = products.find(p => p.sku === 'SNK-BLK-09');
   if (heroSKU && heroSKU.coverageDays < heroSKU.leadTimeDays) {
     const priorHeroAdSpend = adSpend
@@ -81,9 +77,7 @@ export function generateSignals(data) {
     }
   }
 
-  // =========================================================================
-  // 2. INVENTORY FINDING: Direct Stockout Deficit
-  // =========================================================================
+ //inventory fidning//
   products.forEach(p => {
     if (p.coverageDays < p.leadTimeDays && p.coverageDays > 0) {
       signals.push({

@@ -1,11 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useData } from '../../context/DataContext.jsx';
+import { useCommerceData } from '../../hooks/useCommerceData.js';
 import { generateSignals, PRIORITY_LABELS } from '../../lib/signals.js';
 
 export default function SignalDetailPage() {
   const { signalId } = useParams();
-  const { data, storeName } = useData();
+  const { data, storeName } = useCommerceData();
 
   const allSignals = useMemo(() => generateSignals(data), [data]);
   const baseSignal = allSignals.find(s => s.id.toLowerCase() === signalId?.toLowerCase());
@@ -26,7 +26,7 @@ export default function SignalDetailPage() {
           <p className="text-sm text-[#45423b] max-w-md mx-auto">
             The requested finding could not be located in the current operating evaluation cycle.
           </p>
-          <Link to="/app/signals" className="button-primary text-xs inline-block mt-4">
+          <Link to="/app/signals" className="px-4 py-2 bg-[#141310] text-[#fcfbf8] font-mono text-xs inline-block mt-4 hover:bg-[#c5301a] transition-colors">
             View All Findings
           </Link>
         </div>
@@ -35,11 +35,11 @@ export default function SignalDetailPage() {
   }
 
   const signal = { ...baseSignal, status: localStatus };
-  const priorityLabel = PRIORITY_LABELS[signal.severity] || signal.severity;
+  const priorityLabel = PRIORITY_LABELS[signal.severity] || signal.severity || 'MEDIUM';
 
   const currentIndex = allSignals.findIndex(s => s.id === signal.id);
   const prevSignal = currentIndex > 0 ? allSignals[currentIndex - 1] : null;
-  const nextSignal = currentIndex < allSignals.length - 1 ? allSignals[currentIndex + 1] : null;
+  const nextSignal = currentIndex >= 0 && currentIndex < allSignals.length - 1 ? allSignals[currentIndex + 1] : null;
 
   return (
     <div className="space-y-12">
@@ -72,9 +72,9 @@ export default function SignalDetailPage() {
         <div className="flex flex-wrap items-start justify-between gap-6">
           <div className="space-y-2 max-w-3xl">
             <div className="flex items-center gap-3 font-mono text-xs text-[#6e6a60]">
-              <span className="uppercase font-semibold text-[#c5301a]">{signal.domain}</span>
+              <span className="uppercase font-semibold text-[#c5301a]">{signal.domain || 'OPERATIONS'}</span>
               <span>·</span>
-              <span>Recorded: {signal.createdAt}</span>
+              <span>Recorded: {signal.createdAt || 'Cycle Active'}</span>
             </div>
             <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#141310] leading-tight tracking-tight">
               {signal.title}
@@ -175,12 +175,12 @@ export default function SignalDetailPage() {
               Evaluating this lever against store contribution and cash timing prevents reactive decision-making.
             </p>
             <div className="pt-2 flex items-center gap-4 font-mono text-xs">
-              <Link to="/app/decisions" className="button-primary text-xs">
+              <Link to="/app/decisions" className="px-4 py-2 bg-[#141310] text-[#fcfbf8] hover:bg-[#c5301a] transition-colors">
                 Log into Decision Ledger →
               </Link>
               {signal.entityId && (
-                <Link to={`/app/products/${signal.entityId}`} className="editorial-link">
-                  Open SKU Dossier ({signal.entityId}) <span>→</span>
+                <Link to={`/app/products/${signal.entityId}`} className="text-[#141310] underline hover:text-[#c5301a]">
+                  Open SKU Dossier ({signal.entityId}) →
                 </Link>
               )}
             </div>

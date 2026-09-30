@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+  import { Link, useParams } from 'react-router-dom';
 import Reveal from '../components/Reveal.jsx';
 import { expertise } from '../content.js';
 
