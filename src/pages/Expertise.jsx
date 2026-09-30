@@ -7,10 +7,7 @@ export default function Expertise() {
     <section className="px-[5vw] py-16 md:py-28">
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#c5301a]">
-            Capabilities &amp; Practice Areas
-          </span>
-          <h1 className="display mt-4 max-w-4xl">
+          <h1 className="display max-w-4xl">
             Commercial questions, resolved through disciplined analysis.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-[#45423b]">
@@ -35,9 +32,6 @@ export default function Expertise() {
                   </div>
                   <div className="mt-6 flex items-center justify-between font-mono text-xs text-[#c5301a]">
                     <span>{item.number}</span>
-                    <span className="text-[11px] uppercase tracking-wider text-[#6e6a60]">
-                      PRACTICE
-                    </span>
                   </div>
                   <h2 className="mt-3 font-serif text-2xl text-[#141310] group-hover:text-[#c5301a] transition-colors">
                     {item.title}

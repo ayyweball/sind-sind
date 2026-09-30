@@ -40,10 +40,7 @@ export default function Consultant() {
     <section className="px-[5vw] py-16 md:py-28">
       <div className="mx-auto max-w-4xl">
         <Reveal>
-          <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#c5301a]">
-            Interactive Decision Support
-          </span>
-          <h1 className="display mt-4">
+          <h1 className="display">
             Bring us a commercial trade-off.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-[#45423b]">

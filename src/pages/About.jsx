@@ -7,10 +7,7 @@ export default function About() {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-16 lg:grid-cols-[1.15fr_1fr]">
           <Reveal>
-            <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#c5301a]">
-              The Firm &amp; Methodology
-            </span>
-            <h1 className="display mt-4">
+            <h1 className="display">
               Strategic guidance must be clear about its reasoning.
             </h1>
             <p className="mt-8 text-lg leading-relaxed text-[#45423b]">
@@ -28,9 +25,9 @@ export default function About() {
           </Reveal>
 
           <Reveal className="border-l border-[#ded8cb] pl-6 md:pl-12">
-            <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#c5301a]">
-              Engagement Protocol
-            </span>
+            <h2 className="section-title text-2xl">
+              Engagement Framework
+            </h2>
             <ol className="mt-8 space-y-10">
               {[
                 [

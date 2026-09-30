@@ -56,10 +56,10 @@ export default function Header() {
         {/* Desktop CTA & Mobile Toggle */}
         <div className="flex items-center gap-4">
           <Link
-            to="/consultant"
+            to="/app"
             className="button-primary hidden sm:inline-flex"
           >
-            Run a diagnosis <span>→</span>
+            Operating Console <span>→</span>
           </Link>
 
           {/* Mobile Menu Button */}
@@ -122,11 +122,11 @@ export default function Header() {
 
             <div className="mt-6 pt-2">
               <Link
-                to="/consultant"
+                to="/app"
                 className="button-primary w-full justify-center py-3.5"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Run a diagnosis <span>→</span>
+                Operating Console <span>→</span>
               </Link>
             </div>
           </nav>

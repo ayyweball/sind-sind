@@ -37,12 +37,7 @@ export default function ExpertiseDetail() {
           >
             ← All Capabilities
           </Link>
-          <div className="mt-8 flex items-center gap-3">
-            <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#6e6a60]">
-              {item.number} / PRACTICE MONOGRAPH
-            </span>
-          </div>
-          <h1 className="display mt-4">{item.title}</h1>
+          <h1 className="display mt-6">{item.title}</h1>
           <p className="editorial-subhead mt-8 max-w-3xl text-xl">
             {item.focus}
           </p>
@@ -50,21 +45,18 @@ export default function ExpertiseDetail() {
 
         {/* Monograph Image */}
         <Reveal className="mt-12 overflow-hidden border border-[#ded8cb]">
-          <div className="aspect-[21/9] w-full bg-[#141310]">
+          <div className="aspect-[21/9] w-full bg-[#141310] group">
             <img
               src={item.image}
               alt={item.title}
-              className="h-full w-full object-cover opacity-90"
+              className="h-full w-full object-cover opacity-90 transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </div>
         </Reveal>
 
         {/* Essential Inquiries */}
         <Reveal className="mt-16 border-y border-[#ded8cb] py-12">
-          <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#c5301a]">
-            Analytical Inquiries
-          </span>
-          <h2 className="section-title mt-3">
+          <h2 className="section-title">
             Questions operators must evaluate
           </h2>
           <ul className="mt-8 space-y-6">
@@ -84,10 +76,7 @@ export default function ExpertiseDetail() {
 
         {/* Direct Action Banner */}
         <Reveal className="mt-16 border border-[#ded8cb] bg-[#141310] p-8 md:p-12 text-[#fcfbf8]">
-          <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#c5301a]">
-            Diagnostic Action
-          </span>
-          <h3 className="section-title mt-3 text-[#fcfbf8]">
+          <h3 className="section-title text-[#fcfbf8]">
             Evaluate this decision live.
           </h3>
           <p className="mt-4 max-w-xl text-base text-[#dcd7cb]">

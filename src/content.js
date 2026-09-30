@@ -10,7 +10,7 @@ export const expertise = [
       'Which channels are genuinely incremental rather than claiming organic demand?'
     ],
     focus: 'Growth is useful only when it compounds profitable demand. Start with the economics of an order, then decide where more traffic can create real enterprise value.',
-    image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80',
     tagline: 'Acquisition economics and contribution modeling'
   },
   {
@@ -38,7 +38,7 @@ export const expertise = [
       'Where do discounts start concealing an underlying margin failure?'
     ],
     focus: 'A cost increase is an offer-design problem, not automatically a reason for a blanket price rise. Model SKU-level contribution before acting.',
-    image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=1200&q=80',
     tagline: 'SKU-level profitability and offer architecture'
   },
   {

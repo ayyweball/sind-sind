@@ -7,10 +7,7 @@ export default function Insights() {
     <section className="px-[5vw] py-16 md:py-28">
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#c5301a]">
-            Perspectives &amp; Analysis
-          </span>
-          <h1 className="display mt-4 max-w-4xl">
+          <h1 className="display max-w-4xl">
             A better question often changes the answer.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-[#45423b]">
@@ -42,11 +39,11 @@ export default function Insights() {
                   </span>
                 </div>
               </div>
-              <div className="aspect-[16/10] overflow-hidden bg-[#141310]">
+              <div className="aspect-[16/10] overflow-hidden bg-[#141310] group">
                 <img
                   src={insights[0].image}
                   alt={insights[0].title}
-                  className="h-full w-full object-cover opacity-90"
+                  className="h-full w-full object-cover opacity-90 transition-transform duration-700 ease-out group-hover:scale-105"
                 />
               </div>
             </div>
