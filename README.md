@@ -1,68 +1,24 @@
 # Sind & Sind
 
-### Commerce Operating Intelligence for E-commerce Businesses
+**Sind & Sind is an e-commerce operating intelligence platform for analysing product economics, pricing, marketplaces, inventory, fulfilment, returns, and working capital in one system.**
 
-Sind & Sind is a commerce operating and decision-support platform designed to help e-commerce operators understand the relationship between **sales, product economics, pricing, marketplaces, advertising, inventory, fulfilment, returns, suppliers, and working capital**.
+The project combines a React frontend, Express backend, deterministic commerce and economic engines, a findings layer, and a tool-using operating agent.
 
-Instead of presenting isolated dashboards, Sind & Sind is designed around a simple operating question:
-
-> **What happened → Why did it happen → What does it mean → What should the operator review next?**
-
-The project combines deterministic economic models, operational analytics, a structured findings engine, and a tool-using operating agent.
-
----
-
-## Overview
-
-Modern commerce platforms expose large amounts of operational data:
-
-- Orders
-- Revenue
-- Advertising spend
-- Product costs
-- Marketplace fees
-- Discounts
-- Inventory
-- Fulfilment
-- Returns
-- Suppliers
-- Settlements
-
-The difficult part is not collecting these numbers.
-
-The difficult part is understanding how they interact.
+The main idea is to connect data that is usually split across different parts of an e-commerce business and analyse the relationships between them.
 
 For example:
 
-> Advertising spend increases → orders increase → inventory falls below supplier lead time → stockout risk increases → contribution economics deteriorate if acquisition continues.
-
-Sind & Sind attempts to model these relationships rather than treating each metric as an isolated KPI.
-
----
-
-# Core Analytical Model
-
-The platform is organized around four layers:
-
 ```text
-                 COMMERCE DATA
-                       │
-                       ▼
-              CANONICAL DATA MODEL
-                       │
-          ┌────────────┼────────────┐
-          ▼            ▼            ▼
-     Commercial    Operations      Cash
-          │            │            │
-          └────────────┼────────────┘
-                       ▼
-                ECONOMIC ENGINE
-                       │
-                       ▼
-                FINDING ENGINE
-                       │
-                       ▼
-               OPERATING AGENT
-                       │
-                       ▼
-             MANAGEMENT REVIEW
+Advertising
+     ↓
+Orders
+     ↓
+Inventory
+     ↓
+Fulfilment
+     ↓
+Returns
+     ↓
+Contribution
+     ↓
+Cash
