@@ -1,37 +1,68 @@
 # Sind & Sind
 
-A React, Tailwind and Express e-commerce decision-support product.
+### Commerce Operating Intelligence for E-commerce Businesses
 
-## Stack
+Sind & Sind is a commerce operating and decision-support platform designed to help e-commerce operators understand the relationship between **sales, product economics, pricing, marketplaces, advertising, inventory, fulfilment, returns, suppliers, and working capital**.
 
-- React + React Router for the multi-page interface
-- Tailwind CSS v4 for styling
-- Vite for the frontend build and development server
-- Node.js + Express for the `/api/advice` endpoint
-- A local JavaScript playbook library as the initial knowledge base
+Instead of presenting isolated dashboards, Sind & Sind is designed around a simple operating question:
 
-## Run locally
+> **What happened → Why did it happen → What does it mean → What should the operator review next?**
 
-Install the current Node.js LTS release first, then run:
+The project combines deterministic economic models, operational analytics, a structured findings engine, and a tool-using operating agent.
 
-```bash
-npm install
-npm run dev
-```
+---
 
-Open `http://localhost:5173`. Vite serves the React app and proxies `/api` requests to Express on port `5174`.
+## Overview
 
-## Build and deploy
+Modern commerce platforms expose large amounts of operational data:
 
-```bash
-npm run build
-npm start
-```
+- Orders
+- Revenue
+- Advertising spend
+- Product costs
+- Marketplace fees
+- Discounts
+- Inventory
+- Fulfilment
+- Returns
+- Suppliers
+- Settlements
 
-`npm start` serves the built `dist` folder and the API from the same Express service. This can be deployed as one Node service on Render or Railway.
+The difficult part is not collecting these numbers.
 
-For a split deployment, host `dist` on Vercel and the `server/` service on Render/Railway. Set `VITE_API_URL` to the deployed API origin during the frontend build and `CLIENT_ORIGIN` to the deployed frontend origin on the server.
+The difficult part is understanding how they interact.
 
-## Knowledge base
+For example:
 
-The initial playbooks live in `server/data/playbooks.js`. Move them to Supabase or another database when you need editing tools, analytics, versioning, or a larger searchable library.
+> Advertising spend increases → orders increase → inventory falls below supplier lead time → stockout risk increases → contribution economics deteriorate if acquisition continues.
+
+Sind & Sind attempts to model these relationships rather than treating each metric as an isolated KPI.
+
+---
+
+# Core Analytical Model
+
+The platform is organized around four layers:
+
+```text
+                 COMMERCE DATA
+                       │
+                       ▼
+              CANONICAL DATA MODEL
+                       │
+          ┌────────────┼────────────┐
+          ▼            ▼            ▼
+     Commercial    Operations      Cash
+          │            │            │
+          └────────────┼────────────┘
+                       ▼
+                ECONOMIC ENGINE
+                       │
+                       ▼
+                FINDING ENGINE
+                       │
+                       ▼
+               OPERATING AGENT
+                       │
+                       ▼
+             MANAGEMENT REVIEW
